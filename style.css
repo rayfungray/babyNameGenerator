@@ -1,0 +1,30 @@
+#main-section{
+    display:flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+}
+#input-section{
+    flex-direction: row;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.radio-btn{
+    margin: 5px;
+}
+
+.generate-name{
+    width:200px;
+}
+
+.name-display{
+    margin: 20px;
+    font-size: 50px;
+  }
+
