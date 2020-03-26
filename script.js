@@ -6,16 +6,15 @@ var audio = new Audio('./click.wav');
 genNameBtn.addEventListener('click',function(){
     audio.play();
     var input = checkLetterOnly();
-    var type = getCritterType();    
+    var gender = getGender();    
     if(input !== undefined){
-        genNameInDom(input, type);
+        genNameInDom(input, gender);
     }
 });
 
 
 function checkLetterOnly(){
-        var letters = /^[A-Za-z]+$/;
-
+    var letters = /^[A-Za-z]+$/;
     if(lastNameInput.value.match(letters)){
         return lastNameInput.value;
     }else{
@@ -24,22 +23,32 @@ function checkLetterOnly(){
 }
 
 function genNameInDom(name, type){
-
-    var boyName, girlName;
-    if(type === "boy"){
-        boyName = getRandEl(boyNames);
-        displayDiv.innerHTML = boyName + ' ' + name;
-        displayDiv.style.textShadow = '2px 2px blue';
+     if(type === "boy"){
+        outputName(boyNames, name);
     }else {
-        girlName = getRandEl(girlNames);
-        displayDiv.innerHTML = girlName + ' ' + name;
-        displayDiv.style.textShadow = '2px 2px pink';
-    }   
-    
+        outputName(girlNames, name);
+    }       
 }
 
-function getCritterType(){
+
+
+function getGender(){
     return document.querySelector('input[type="radio"]:checked').value;
+}
+
+function outputName(arr, name){
+    var randFirstName = getRandEl(arr);
+    var middleName = randFilterElem(arr, randFirstName)
+    displayDiv.innerHTML = randFirstName + ' ' + middleName + ' ' + name;
+    displayDiv.style.textShadow = '2px 2px blue';
+}
+
+function randFilterElem(arr, filter){
+    var randomElem = getRandEl(arr);
+    while(filter === randomElem){
+        randomElem = getRandEl(arr);
+    }
+    return randomElem;
 }
 
 function getRandEl(arr) {
